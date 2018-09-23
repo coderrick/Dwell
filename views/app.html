@@ -217,7 +217,34 @@
           </ul>
         </div>
       </div>
+      <div class="instagram-wrapper"></div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script>
+              initInstagramFeed = (function(){
+   		var igID = '10054954'; //lukeharby
+	    var igClientID = '37f944b55b27422d973fdea0e1c803cb';
+	    var igClientSecret = '1897b131caa24988b6d61ea30531353a';
+	    var count = 33; // weird max image?
+	    var accessToken = '10054954.1677ed0.c830fee08ea9418a8fa8a795d49364ac';
+	    $.ajax({
+            type: "GET",
+            dataType: "jsonp",
+            cache: false,
+            url: "https://api.instagram.com/v1/users/" + igID + "/media/recent/?access_token=" + accessToken + '&count=' + count,
+			success: function(data) {
+				for (var i = 0; i < count; i++) {
+					$(".instagram-wrapper").append("<a target='_blank' href='" + data.data[i].link +"'><img src='" + data.data[i].images.thumbnail.url +"' /></a>");
+				}
+				console.log(data);
+			},
+			error: function(){
+				console.log('Something went wrong', data);
+			}
+		});
+    }());
+    
+    console.log(initInstagramFeed)
+      </script>
 </body>
 
 </html>
