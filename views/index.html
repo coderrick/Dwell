@@ -12,109 +12,218 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
     <link rel="stylesheet" href="https://cdn.rawgit.com/tkrotoff/famfamfam_flags/1047b3e5/famfamfam-flags.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 
 <body>
-    <div id="app">
-        <img src="logo.svg" style="height:450px; width:400px; z-index:-1; opacity: 0.8"class="logo"
-        />
-        <div class="character">
-            <div class="columns">
-                <div class="column is-centered">
-                    <div class="parent columns">
-                        <div class="column">
-                            <div class="character__profile">
-                                <img :src="getActiveCharacter.largeImg" />
-                            </div>
-                            <div class="character__stats" style="visibility:hidden;">
-                                <div class="name">{{getActiveCharacter.name}}</div>
-                                <div class="stat">
-                                    <span class="tag">Height</span> {{getActiveCharacter.height}}
-                                </div>
-                                <div class="stat">
-                                    <span class="tag">Birthplace</span>
-                                    <i v-if="getActiveCharacter.birth" class="flag" :class="`famfamfam-flag-${getActiveCharacter.birth}`"></i>
-                                    <span v-else>?</span>
-                                </div>
-                                <div class="stat">
-                                    <span class="tag">Fighting Style</span>
-                                    {{getActiveCharacter.fighting}}
-                                </div>
-                                <div class="stat">
-                                    <span class="tag">Skills</span>
-                                    {{getActiveCharacter.skills}}
-                                </div>
-                                <div class="stat final">
-                                    <span class="tag">Alignment</span>
-                                    <span class="alignment" :class="getCharacterAlignment">{{getActiveCharacter.alignment}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="column has-text-left" style="position: absolute;display: block;left: 800px;">
-                            <!-- Transpilation textfield -->
-                            <br/>
-                            <div class="mdInput full">
-                            <textarea id="inputText" cols="40" rows="5" value="int i = 0+1;">public class Example{
-                              private int age;
-                              public Example(){
-                                  this.age = 1;
-                                  return add(3,4);
-                              }
-                              public static int add(int a, int b){
-                                  return a + b;
-                              }
-                          }</textarea>
-                        </div>
-                            <br/>
-                            <br/>Input language:
-                            <input type="text" id="inputLang" value="Detect language">
-                            <br/>Output language:
-                            <input type="text" id="outputLang" value="C">
-                            <br/>
-                            <button type="button" onclick="save_file()">Download file</button>
-
-
-                            <p id="outputText"></p>
-                            <!-- end -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container">
+        <div class="side">
+          <h1>Analytics Dashboard</h1>
+          <ul class="links">
+            <li><a href="#" class="selected" data-metric="visits">Visits</a></li>
+            <li><a href="#" data-metric="pageviews">Pageviews</a></li>
+            <li><a href="#" data-metric="conversions">Conversions</a></li>
+          </ul>
+          <div class="stats">
+            <ul data-metric="visits">
+              <li>
+                <div class="key">Total Visits</div>
+                <div class="val">356</div>
+              </li>
+              <li>
+                <div class="key">Average</div>
+                <div class="val">50.9</div>
+              </li>
+              <li>
+                <div class="key">Change</div>
+                <div class="val">+122.2%</div>
+              </li>
+            </ul>
+            <ul data-metric="pageviews">
+              <li>
+                <div class="key">Total Pageviews</div>
+                <div class="val">468</div>
+              </li>
+              <li>
+                <div class="key">Average</div>
+                <div class="val">66.9</div>
+              </li>
+              <li>
+                <div class="key">Change</div>
+                <div class="val">+16.7%</div>
+              </li>
+            </ul>
+            <ul data-metric="conversions">
+              <li>
+                <div class="key">Total Conversions</div>
+                <div class="val">456</div>
+              </li>
+              <li>
+                <div class="key">Average</div>
+                <div class="val">65.1</div>
+              </li>
+              <li>
+                <div class="key">Change</div>
+                <div class="val">-47.4%</div>
+              </li>
+            </ul>
+          </div>
+          <ul>
+            <li>
+              <div class="key">Range</div>
+              <div class="val">7 days</div>
+            </li>
+            <li>
+              <div class="key">Timezone</div>
+              <div class="val">PDT</div>
+            </li>
+            <li>
+              <div class="key">Spirit Animal</div>
+              <div class="val">Duck</div>
+            </li>
+          </ul>
         </div>
-
-        <div class="character-container">
-            <div class="columns is-centered is-mobile is-gapless">
-                <div class="column" v-for="character in characters.slice(0,5)">
-                    <character-component :character="character" />
+        <div class="main">
+          <ul>
+            <li class="active">
+              <article tabindex="0" data-metric="visits">
+                <div class="area">
+                  <div class="lines">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <div class="data visits">
+                    <dl>
+                      <dt>3/8</dt>
+                      <dd>36</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/9</dt>
+                      <dd>44</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/10</dt>
+                      <dd>52</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/11</dt>
+                      <dd>32</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/12</dt>
+                      <dd>44</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/13</dt>
+                      <dd>68</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/14</dt>
+                      <dd>80</dd>
+                    </dl>
+                  </div>
                 </div>
-            </div>
-            <div class="columns is-centered is-mobile is-gapless">
-                <div class="column" v-for="character in characters.slice(5,10)">
-                    <character-component :character="character" />
+                <h1>Visits</h1>
+              </article>
+            </li>
+            <li>
+              <article tabindex="0" data-metric="pageviews">
+                <div class="area">
+                  <div class="lines">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <div class="data pageviews">
+                    <dl>
+                      <dt>3/8</dt>
+                      <dd>72</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/9</dt>
+                      <dd>56</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/10</dt>
+                      <dd>64</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/11</dt>
+                      <dd>48</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/12</dt>
+                      <dd>64</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/13</dt>
+                      <dd>80</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/14</dt>
+                      <dd>84</dd>
+                    </dl>
+                  </div>
                 </div>
-            </div>
+                <h1>Pageviews</h1>
+              </article>
+            </li>
+            <li>
+              <article tabindex="0" data-metric="conversions">
+                <div class="area">
+                  <div class="lines">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                  <div class="data conversions">
+                    <dl>
+                      <dt>3/8</dt>
+                      <dd>76</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/9</dt>
+                      <dd>88</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/10</dt>
+                      <dd>72</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/11</dt>
+                      <dd>68</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/12</dt>
+                      <dd>52</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/13</dt>
+                      <dd>60</dd>
+                    </dl>
+                    <dl>
+                      <dt>3/14</dt>
+                      <dd>40</dd>
+                    </dl>
+                  </div>
+                </div>
+                <h1>Conversions</h1>
+              </article>
+            </li>
+          </ul>
         </div>
-        <a href="https://twitter.com/djirdehh" target="_blank" class="twitter-section">
-            <i class="fa fa-twitter-square" aria-hidden="true"></i>
-            <a>
-    </div>
-
-    <!--  Prefetch large images -->
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/ken-compressed.png" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/chun_li-compressed.png" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/dj-compressed.png" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/cammie-compressor.png" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/sagat-compressed.png" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/zangief-compressed.png" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/akuma_compressed.jpg" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/bison-compressor.png" />
-    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/blanka_compressed.png" />
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
-    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
-    <script src="script.js"></script>
+      </div>
 </body>
 
 </html>
