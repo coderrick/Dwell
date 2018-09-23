@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello world!</title>
+    <link type="text/css" rel="stylesheet" href="style.css" />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.deep_purple-blue.min.css"
+    />
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script> -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/tkrotoff/famfamfam_flags/1047b3e5/famfamfam-flags.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <img src="logo.svg" style="height:450px; width:400px; z-index:-1; opacity: 0.8"class="logo"
+        />
+        <div class="character">
+            <div class="columns">
+                <div class="column is-centered">
+                    <div class="parent columns">
+                        <div class="column">
+                            <div class="character__profile">
+                                <img :src="getActiveCharacter.largeImg" />
+                            </div>
+                            <div class="character__stats" style="visibility:hidden;">
+                                <div class="name">{{getActiveCharacter.name}}</div>
+                                <div class="stat">
+                                    <span class="tag">Height</span> {{getActiveCharacter.height}}
+                                </div>
+                                <div class="stat">
+                                    <span class="tag">Birthplace</span>
+                                    <i v-if="getActiveCharacter.birth" class="flag" :class="`famfamfam-flag-${getActiveCharacter.birth}`"></i>
+                                    <span v-else>?</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="tag">Fighting Style</span>
+                                    {{getActiveCharacter.fighting}}
+                                </div>
+                                <div class="stat">
+                                    <span class="tag">Skills</span>
+                                    {{getActiveCharacter.skills}}
+                                </div>
+                                <div class="stat final">
+                                    <span class="tag">Alignment</span>
+                                    <span class="alignment" :class="getCharacterAlignment">{{getActiveCharacter.alignment}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column has-text-left" style="position: absolute;display: block;left: 800px;">
+                            <!-- Transpilation textfield -->
+                            <br/>
+                            <div class="mdInput full">
+                            <textarea id="inputText" cols="40" rows="5" value="int i = 0+1;">public class Example{
+                              private int age;
+                              public Example(){
+                                  this.age = 1;
+                                  return add(3,4);
+                              }
+                              public static int add(int a, int b){
+                                  return a + b;
+                              }
+                          }</textarea>
+                        </div>
+                            <br/>
+                            <br/>Input language:
+                            <input type="text" id="inputLang" value="Detect language">
+                            <br/>Output language:
+                            <input type="text" id="outputLang" value="C">
+                            <br/>
+                            <button type="button" onclick="save_file()">Download file</button>
+
+
+                            <p id="outputText"></p>
+                            <!-- end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="character-container">
+            <div class="columns is-centered is-mobile is-gapless">
+                <div class="column" v-for="character in characters.slice(0,5)">
+                    <character-component :character="character" />
+                </div>
+            </div>
+            <div class="columns is-centered is-mobile is-gapless">
+                <div class="column" v-for="character in characters.slice(5,10)">
+                    <character-component :character="character" />
+                </div>
+            </div>
+        </div>
+        <a href="https://twitter.com/djirdehh" target="_blank" class="twitter-section">
+            <i class="fa fa-twitter-square" aria-hidden="true"></i>
+            <a>
+    </div>
+
+    <!--  Prefetch large images -->
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/ken-compressed.png" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/chun_li-compressed.png" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/dj-compressed.png" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/cammie-compressor.png" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/sagat-compressed.png" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/zangief-compressed.png" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/akuma_compressed.jpg" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/bison-compressor.png" />
+    <link rel="prefetch" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/blanka_compressed.png" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.3.0/material.min.js"></script>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
